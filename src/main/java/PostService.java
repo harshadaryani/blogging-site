@@ -6,6 +6,7 @@ public class PostService {
     private List<Post> posts = new ArrayList<Post>();
 
     public void add(Post addObj) {
+
         posts.add(addObj);
     }
 

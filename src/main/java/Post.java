@@ -81,13 +81,13 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", author='" + author + '\'' +
-                ", date='" + date + '\'' +
-                ", content='" + content + '\'' +
-                ", keywords=" + Arrays.toString(keywords) +
-                ", claps=" + claps +
+                "title='" + title + "', \n "  +
+                "description='" + description + "', \n " +
+                "author='" + author + "', \n " +
+                "date='" + date + "', \n " +
+                "content='" + content + "', \n " +
+                "keywords=" + Arrays.toString(keywords) + "', \n " +
+                "claps=" + claps +
                 '}';
     }
 }
