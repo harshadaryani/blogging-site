@@ -1,6 +1,9 @@
 import java.util.Arrays;
+import java.util.UUID;
 
 public class Post {
+    UUID id;
+    String category;
     String title;
     String description;
     String author;
@@ -11,8 +14,9 @@ public class Post {
 
 
 
-    public Post(String title, String description, String author, String date, String content, String[] keywords, int claps) {
+    public Post(String title, String category, String description, String author, String date, String content, String[] keywords, int claps) {
         this.title = title;
+        this.category = category;
         this.description = description;
         this.author = author;
         this.date = date;
@@ -82,6 +86,7 @@ public class Post {
     public String toString() {
         return "Post{" +
                 "title='" + title + "', \n "  +
+                "category='" + category + "', \n "  +
                 "description='" + description + "', \n " +
                 "author='" + author + "', \n " +
                 "date='" + date + "', \n " +
