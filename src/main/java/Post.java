@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 public class Post {
-    UUID id;
+    String id;
     String category;
     String title;
     String description;

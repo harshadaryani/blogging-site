@@ -1,5 +1,8 @@
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class PostService {
@@ -8,8 +11,10 @@ public class PostService {
 
 
     public void add(Post addObj) {
-        addObj.id = java.util.UUID.randomUUID();;
-        posts.add(addObj);
+        if(addObj.title != null) {
+            addObj.id = java.util.UUID.randomUUID().toString();
+            posts.add(addObj);
+        }
     }
 
     public List<Post> getAll() {
@@ -36,10 +41,26 @@ public class PostService {
 
     public List<Post> getPostsByCategory(String category) {
         for(Post data : posts) {
-            if(data.category == category) {
+            if(data.category.equals(category)) {
                 postsListByClaps.add(data);
             }
         }
         return postsListByClaps;
+    }
+
+    public HashMap<Integer, String> getPostsListByUniqueClaps() {
+        HashMap<Integer, String> UniqueClapMap = new HashMap<Integer, String>();
+
+        for(Post data: posts) {
+            if(UniqueClapMap.containsKey(data.claps)) {
+                UniqueClapMap.put(data.claps, UniqueClapMap.get(data.claps) + ", " + data.title);
+            }
+            else {
+                UniqueClapMap.put(data.claps, data.title);
+            }
+
+        }
+        return UniqueClapMap;
+
     }
 }
