@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class Post {
@@ -85,6 +86,7 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
+                "id='" + id + "', \n "  +
                 "title='" + title + "', \n "  +
                 "category='" + category + "', \n "  +
                 "description='" + description + "', \n " +
