@@ -1,3 +1,4 @@
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -6,6 +7,7 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import javafx.geometry.Pos;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -186,6 +188,21 @@ public class Main {
         beanWriter.write(postListCsv);
 
         writer.close();
+
+        FileReader filereader = new FileReader("new.csv");
+
+        // create csvReader object passing
+        // file reader as a parameter
+        CSVReader csvReader = new CSVReader(filereader);
+        String[] nextRecord;
+
+        // we are going to read data line by line
+        while ((nextRecord = csvReader.readNext()) != null) {
+            for (String cell : nextRecord) {
+                System.out.print(cell + "\t");
+            }
+            System.out.println();
+        }
 
     }
 }
