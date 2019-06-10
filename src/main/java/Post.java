@@ -4,8 +4,8 @@ import java.util.UUID;
 
 public class Post {
     String id;
-    String category;
     String title;
+    String category;
     String description;
     String author;
     String date;

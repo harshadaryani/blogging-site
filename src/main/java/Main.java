@@ -1,11 +1,24 @@
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.ColumnPositionMappingStrategy;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import javafx.geometry.Pos;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
         PostService postService = new PostService();
 
         System.out.println("************************************");
@@ -123,5 +136,56 @@ public class Main {
         }
         System.out.println();
         System.out.println("************************************");
+
+        List<Post> postListCsv = postService.getAll();
+
+
+        /*FileWriter writer = new FileWriter("new.csv");
+
+        List<List<String>> rows = Arrays.asList(
+                Arrays.asList("Jean", "author", "Java"),
+                Arrays.asList("David", "editor", "Python"),
+                Arrays.asList("Scott", "editor", "Node.js")
+        );
+
+
+
+
+        System.out.println(rows);
+
+        FileWriter csvWriter = new FileWriter("new.csv");
+        csvWriter.append("Name");
+        csvWriter.append(",");
+        csvWriter.append("Role");
+        csvWriter.append(",");
+        csvWriter.append("Topic");
+        csvWriter.append("\n");
+
+        for (List<String> data : rows) {
+            csvWriter.append(String.join(",", data));
+            csvWriter.append("\n");
+        }
+
+
+
+        csvWriter.flush();
+        csvWriter.close();*/
+
+        FileWriter writer = new FileWriter("new.csv");
+        ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();
+        mappingStrategy.setType(Post.class);
+        String[] columns = new String[] { "title", "category", "descripton", "author", "date", "content", "keywords", "claps" };
+        mappingStrategy.setColumnMapping(columns);
+
+        StatefulBeanToCsvBuilder<Post> builder = new StatefulBeanToCsvBuilder(writer);
+        StatefulBeanToCsv beanWriter = builder.withMappingStrategy(mappingStrategy).build();
+
+        // Write list to StatefulBeanToCsv object
+        System.out.println("post object csv");
+        System.out.println(postListCsv);
+        beanWriter.write(postListCsv);
+
+        writer.close();
+
     }
 }
