@@ -13,6 +13,8 @@ public class Post {
     String[] keywords;
     int claps;
 
+    Integer iOb = 100;
+
 
 
     public Post(String title, String category, String description, String author, String date, String content, String[] keywords, int claps) {
@@ -24,7 +26,7 @@ public class Post {
         this.content = content;
         this.keywords = keywords;
         this.claps = claps;
-
+        iOb++;
     }
 
     public String getTitle() {
