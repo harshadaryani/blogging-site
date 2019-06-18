@@ -1,6 +1,6 @@
-import javafx.geometry.Pos;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PostService {
     private List<Post> posts = new ArrayList<Post>();
@@ -51,11 +51,16 @@ public class PostService {
 
     public List<Post> getPostsByClaps(int count) {
         List<Post> postsListByClaps = new ArrayList<Post>();
-        for(Post data : posts) {
+
+        postsListByClaps = posts.stream()
+                .filter(p -> p.claps >= count)
+                .collect(Collectors.toList());
+
+        /*for(Post data : posts) {
             if(data.claps > count) {
                 postsListByClaps.add(data);
             }
-        }
+        }*/
         return postsListByClaps;
     }
 
