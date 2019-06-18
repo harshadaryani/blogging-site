@@ -176,7 +176,7 @@ public class Main {
         FileWriter writer = new FileWriter("new.csv");
         ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();
         mappingStrategy.setType(Post.class);
-        String[] columns = new String[] { "title", "category", "descripton", "author", "date", "content", "keywords", "claps" };
+        String[] columns = new String[] {"id", "title", "category", "description", "author", "date", "content", "keywords", "claps" };
         mappingStrategy.setColumnMapping(columns);
 
         StatefulBeanToCsvBuilder<Post> builder = new StatefulBeanToCsvBuilder(writer);
